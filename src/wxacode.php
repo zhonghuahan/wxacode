@@ -58,7 +58,7 @@ class wxacode{
     /** 接口模式C:          https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode?access_token=ACCESS_TOKEN */
     const POST_CODE_C = 'https://api.weixin.qq.com/cgi-bin/wxaapp/createwxaqrcode';
 
-    protected $path;        /** 生成二维码保存路径 */
+    protected $path = 'wxacode/';        /** 生成二维码保存路径 默认 根目录/wxacode/ */
 
     protected $resource;    /** 二维码二进制数据 */
 
@@ -91,6 +91,10 @@ class wxacode{
      */
     public function setPath($path){
 
+        if ( '/' != strrchr($path, '/') ) {
+            $path .= '/';
+        }
+
         $this->path = $path;
 
         return $this;
@@ -117,7 +121,7 @@ class wxacode{
 
     public function setFile(){
 
-        $path = $this->path .'/'. date('Ymd') .'/';
+        $path = $this->path . date('Ymd') .'/';
 
         !file_exists($path) && @mkdir($path, 0777, true);
 
@@ -135,7 +139,7 @@ class wxacode{
      */
     public function getFileName(){
 
-        return $this->filename;
+        return $this->path . $this->filename;
 
     }
 
@@ -176,7 +180,7 @@ class wxacode{
      * @author 凉笙墨染 2019-05-18
      * @param array $code 小程序给的CODE
      */
-    public function getOpenid(){
+    public function getOpenID(){
 
         $data = array(
             'appid'      => $this->appid,
@@ -204,7 +208,7 @@ class wxacode{
      * 不同场景：获取小程序二维码
      * @author 凉笙墨染 2019-05-17
      * @param array $data
-     * @param string $mode: A, B, C (默认生成B场景（无限制）的小程序码)
+     * @param string $mode: A, B, C (默认生成B场景（无限制数量）的小程序码)
      */
     public function data($data, $mode = 'B'){
 
@@ -246,13 +250,18 @@ class wxacode{
      * @param               string $path [description]
      * @author 凉笙墨染 2019-05-17
      */
-    public function save($name =''){
+    public function save($name ='', $path = ''){
 
 
         if ( '' == $name) {
             $name = date('His').sprintf('%03d', mt_rand(1,999)).'.png';
         }
         $this->setName($name);
+
+        if ( '' != $path) {
+
+            $this->setPath($path);
+        }
 
         $this->setFile();
 
