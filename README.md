@@ -54,12 +54,12 @@ WXACODE插件 ThinkPHP开发拿来即用
 
     $wx = new wxacode($config);
 
-    $qrcode = $wx->data($data)->save()->getFileName;
+    $qrcode = $wx->data($data)->save()->getFileName();
 
     // 生成二维码路径：wxacode/20190520/131420520.png
     echo '<img src="'.$qrcode.'">";
 
-    $qrname = $wx->data($data)->save()->getName;
+    $qrname = $wx->data($data)->save()->getName();
 
     echo $qrname; // 只获取二维码名称：131420520.png
     die;
