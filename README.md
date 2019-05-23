@@ -6,7 +6,7 @@ WXACODE插件 ThinkPHP开发拿来即用
 
 ## 安装
 
-* 在目录`extend/wxacode`下，粘贴到该文件目录下。 并创建文件夹：`wxacode`, 并赋权: `chmod -R 777 wxacode`
+* 在目录`extend/wxacode`下，粘贴到该文件目录下。 并在`根目录下`创建文件夹：`wxacode`, 并赋权: `chmod -R 777 wxacode`
 ```
    test
     |- extend
@@ -14,6 +14,7 @@ WXACODE插件 ThinkPHP开发拿来即用
             |- wxacode.php // 封装库
     ...
     |- wxcode   // 保存生成的二维码
+    |- index.php
 ```
 
 ## 使用
