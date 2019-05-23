@@ -14,7 +14,7 @@ WXACODE插件 ThinkPHP开发拿来即用
         |- wxacode
             |- wxacode.php // 封装库
     ...
-    |- wxcode   // 保存生成的二维码
+    |- wxacode   // 保存生成的二维码
     |- index.php
 ```
 
